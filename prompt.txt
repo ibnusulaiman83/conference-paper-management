@@ -1,0 +1,70 @@
+Janakan  custom plugin Wordpress bagi Conference Management System.Objektif utama ialah membenarkan pihak penganjur boleh menguruskan 
+sama ada kertas kerja yang dihantar oleh peserta tersebut menepati sasaran pihak penganjur conference . 
+System itu perlu menggunakan integration antara plugins fluent form dan  ACF untuk memodifikasi field input.  
+
+Terdapat 3 jenis roles 
+
+Roles Pertama : Administrator - Mengawal keseluruhan fungsi sistem.
+
+Roles Pengguna :   Conference Manager
+ - Menyemak kandungan conference paper yang dihantar oleh peserta, mengemaskini status conference paper : Accept atau Reject , If conference == Accept then, status conference paper adalah Payment Pending dan  system akan menghantar email kepada participant dan memberikan url back kepada system untuk melakukan pembayaran.  
+
+    Menyemak pembayaran peserta : Paid / PaymentPending / Completed.
+
+Role pengguna : Peserta
+ - Langkah pertama : Peserta perlu mendaftar terlebih dahulu sekiranya belum memiliki akaun, atau login sekiranya sudah memiliki akaun. Janakan menggunakan fluent Form dan ACF wordpress plugins.
+   Antara field input yang perlu ada semasa pendaftaran adalah 
+   nama penuh , 
+   kata laluan, 
+   pengesahan kata laluan, 
+   no telefon (perlu aktif untuk aplikasi Whatsapp), 
+   Emel,
+   Nama Organisasi / Institut Pengajian Tinggi / Universiti / Syarikat, 
+   Alamat Penuh , 
+   Poskod, 
+   Negara. Secara automatik peserta akan didaftar sebagai 'Participant' dan mempunyai akses login menggunakan email dan kata laluan. 
+ 
+ - Langkah kedua : Participant memasukkan maklumat dan memuat naik dokumen berjenis PDF sahaja.  Dengan menggunakan ACF dan Fluent Form. 
+    Berikut adalah input-input yang perlu ada
+    Title 
+    Descripitions (less than 200 words only)
+    Author,
+    Co-Author (if any)
+    Document Upload (PDF Only)
+    hidden : Status (default - Review / Reject / Pending Payment / Paid / Completed)
+    hidden : Submit_Date
+    hidden : payment_date
+    hidden : Payment_type
+    hidden : Payment_amount (Conference Manager akan konfigurasi jumlah bayaran di paparan Conference Manager)
+
+
+    Selepas participants submit conference paper, status adalah submitted, dan participants akan mendapat email berkenaan penghantaran Conference Paper.
+    Pihak Conference Manager akan mendapat notifikasi. Kemudian conference manager akan mengemaskini status sama ada Accept / Reject. 
+    Sekiranya status berubah kepada Accept and Pending Payment,
+    System akan menghantar email kepada participant bahawa conference paper status Accept dan participant perlu membayar sejumlah yang telah ditetapkan dalam sistem configurasi.
+    Pembayaran sistem menggunakan integrasi Fluent Form Plugins dan CHIP Payment Gateway.
+
+Pada Paparan Dashboard Pengguna Participant
+Terdapat paparan maklumat dalam bentuk table yang terdapat column-column Berikut
+  - Title
+  - Submitted Date
+  - Status
+  - Actions ( Terdapat button View Details, Pay (if status Accept & Pending Payment), Participant Pass (if Status == Completed))
+
+  Paparan Dashboard Pengguna : Conference Manager
+  Menu 
+  - Paper Work List : Terdapat column column berikut 
+    - Participant Name 
+    - Country
+    - Status
+    - Universities / Company / Research Center
+    - Submit_Date
+    - Actions ( Terdapat button View Details for Update)
+      
+   - Dashboard 
+    - Memaparkan graph bagi status ( Accept & Pending Payment / Submit / Paid / Compeleted)
+    - Memaparkan bar graph jumlah pendaftaran mengikut bulan
+     
+     
+
+  
